@@ -72,11 +72,9 @@ if (not squadID):
 headers = {'X-API-Key' : key}
 
 # URLs for armasquads.com REST API
-#postURL = 'https://armasquads.com/api/v1/squads/' + squadID + '/members?key=' + key
 postURL = 'https://armasquads.com/api/v1/squads/' + squadID + '/members'
 logger.debug('postURL is generated as %s', postURL)
 
-#getUrl =  'https://armasquads.com/api/v1/squads/' + squadID + '/members?key=' + key
 getUrl =  'https://armasquads.com/api/v1/squads/' + squadID + '/members'
 logger.debug('getURL is generated as ' + postURL)
 
