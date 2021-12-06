@@ -4,6 +4,8 @@ import configparser
 import logging
 import logging.config
 
+# Block of code extracted from website to deal with PyInstaller not finding cacert.pem
+# From https://stackoverflow.com/questions/46119901/python-requests-cant-find-a-folder-with-a-certificate-when-converted-to-exe
 def override_where():
     # overrides certifi.core.where to return actual location of cacert.pem
     # change this to match the location of cacert.pem
@@ -19,7 +21,8 @@ if hasattr(sys, "frozen"):
 from pip._vendor import requests
 
 requests.utils.DEFAULT_CA_BUNDLE_PATH=override_where()
-# End borrowed code
+# End borrowed code for cacert.pem
+
 
 # name of config file to read from
 confFile = "config.conf"
