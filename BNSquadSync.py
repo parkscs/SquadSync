@@ -19,7 +19,7 @@ if hasattr(sys, "frozen"):
 from pip._vendor import requests
 
 requests.utils.DEFAULT_CA_BUNDLE_PATH=override_where()
-# End 
+# End borrowed code
 
 # name of config file to read from
 confFile = "config.conf"
@@ -55,6 +55,7 @@ if len(sys.argv) > 1:
     key = sys.argv[2]
     squadID = sys.argv[3]
 
+# Ensure key/inputFile/squadID variables are initialized
 if (not key):
     logger.error("Missing input parameter (key) - aborting")
     sys.exit(1)
@@ -67,6 +68,7 @@ if (not squadID):
     logger.error("Missing input parameter (squadID) - aborting")
     sys.exit(1)
 
+# Add API to header for use in submitting commands to armasquads.com REST API
 headers = {'X-API-Key' : key}
 
 # URLs for armasquads.com REST API
