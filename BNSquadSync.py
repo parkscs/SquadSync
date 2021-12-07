@@ -3,24 +3,27 @@ import os
 import configparser
 import logging
 import logging.config
+from pip._vendor import requests
+
+# set the temporary file name to an environment variable for the requests package
+os.environ['REQUESTS_CA_BUNDLE'] = "certifi/cacert.pem"
+
 
 # Block of code extracted from website to deal with PyInstaller not finding cacert.pem
 # From https://stackoverflow.com/questions/46119901/python-requests-cant-find-a-folder-with-a-certificate-when-converted-to-exe
-def override_where():
-    # overrides certifi.core.where to return actual location of cacert.pem
-    # change this to match the location of cacert.pem
-    return os.path.abspath(r"C:\Users\casey\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\certifi\cacert.pem")
+# def override_where():
+#     # overrides certifi.core.where to return actual location of cacert.pem
+#     # change this to match the location of cacert.pem
+#     return os.path.abspath(r"C:\Users\casey\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\certifi\cacert.pem")
 
 # is the program compiled?
-if hasattr(sys, "frozen"):
-    import certifi.core
+# if hasattr(sys, "frozen"):
+#     import certifi.core
     
-    os.environ["REQUESTS_CA_BUNDLE"] = override_where()
-    certifi.core.where = override_where
-    
-from pip._vendor import requests
+#     os.environ["REQUESTS_CA_BUNDLE"] = override_where()
+#     certifi.core.where = override_where
 
-requests.utils.DEFAULT_CA_BUNDLE_PATH=override_where()
+# requests.utils.DEFAULT_CA_BUNDLE_PATH=override_where()
 # End borrowed code for cacert.pem
 
 
